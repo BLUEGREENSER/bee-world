@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>蜜蜂的世界 · 生长习性与蜂蜜制作</title>
+<style>
+:root{
+  --gold:#f5b301;
+  --gold-deep:#c77f02;
+  --amber:#ffc94d;
+  --orange:#e87a1e;
+  --brown:#5c3a1e;
+  --brown-dk:#3b2a18;
+  --cream:#fff8e7;
+  --cream-2:#fdf3dc;
+  --white:#ffffff;
+  --shadow:0 10px 30px rgba(92,58,30,.12);
+  --shadow-sm:0 4px 14px rgba(92,58,30,.10);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",Roboto,sans-serif;
+  background:var(--cream);
+  color:var(--brown-dk);
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{text-decoration:none;color:inherit}
+
+/* ============ 导航 ============ */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 5vw;
+  background:rgba(59,42,24,.82);
+  backdrop-filter:blur(12px);
+  transition:.3s;
+}
+.nav .logo{display:flex;align-items:center;gap:10px;color:#fff;font-weight:700;font-size:19px}
+.nav .logo .bee{font-size:24px}
+.nav .links{display:flex;gap:6px}
+.nav .links a{
+  color:#f3e2c0;padding:7px 15px;border-radius:99px;font-size:15px;transition:.25s;
+}
+.nav .links a:hover,.nav .links a.active{background:var(--gold);color:var(--brown-dk);font-weight:600}
+.nav .menu-btn{display:none;background:var(--gold);border:none;color:var(--brown-dk);
+  font-size:20px;padding:6px 12px;border-radius:8px;cursor:pointer}
+
+/* ============ Hero ============ */
+.hero{
+  position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;
+  text-align:center;color:#fff;padding:120px 5vw 80px;overflow:hidden;
+  background:linear-gradient(160deg,#2a1d10 0%,#3b2a18 55%,#543a1d 100%);
+}
+.hero .hex{position:absolute;opacity:.14;stroke:var(--amber);fill:none;stroke-width:2}
+.hero .hex.h1{width:420px;height:420px;top:-120px;right:-80px;animation:spin 60s linear infinite}
+.hero .hex.h2{width:260px;height:260px;bottom:-60px;left:-40px;animation:spin 45s linear infinite reverse}
+.hero .hex.h3{width:180px;height:180px;top:20%;left:12%;opacity:.20;animation:float 6s ease-in-out infinite}
+.hero .hex.h4{width:140px;height:140px;bottom:22%;right:16%;opacity:.22;animation:float 7s ease-in-out infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-22px)}}
+.hero-inner{position:relative;z-index:2;max-width:860px}
+.hero .bee-big{font-size:84px;display:inline-block;animation:float 4s ease-in-out infinite;filter:drop-shadow(0 8px 20px rgba(0,0,0,.35))}
+.hero h1{font-size:64px;font-weight:800;letter-spacing:2px;margin:18px 0 8px;color:var(--gold)}
+.hero h1 span{display:block;font-size:26px;color:#fff;font-weight:400;letter-spacing:6px;margin-top:10px}
+.hero p.sub{font-size:18px;color:var(--amber);letter-spacing:2px;margin-top:6px}
+.hero .tag{margin-top:26px;display:inline-block;font-size:14px;color:#e9d7b0;letter-spacing:3px}
+.hero .cta{margin-top:38px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn{
+  display:inline-block;padding:14px 32px;border-radius:99px;font-size:16px;font-weight:700;
+  cursor:pointer;transition:.25s;border:none;
+}
+.btn-gold{background:var(--gold);color:var(--brown-dk);box-shadow:0 8px 24px rgba(245,179,1,.35)}
+.btn-gold:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(245,179,1,.5)}
+.btn-ghost{background:transparent;color:#fff;border:2px solid var(--gold)}
+.btn-ghost:hover{background:var(--gold);color:var(--brown-dk)}
+.scroll-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);color:var(--amber);
+  font-size:13px;letter-spacing:2px;animation:float 2.5s ease-in-out infinite}
+
+/* ============ 通用 Section ============ */
+.section{padding:96px 5vw}
+.section.alt{background:var(--cream-2)}
+.wrap{max-width:1180px;margin:0 auto}
+.sec-head{text-align:center;margin-bottom:56px}
+.sec-head .eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--gold-deep);
+  font-size:14px;font-weight:700;letter-spacing:4px;margin-bottom:12px}
+.sec-head h2{font-size:38px;font-weight:800;color:var(--brown-dk)}
+.sec-head .bar{width:60px;height:4px;background:var(--gold);margin:18px auto 0;border-radius:4px}
+.sec-head p.sub{color:#8a6a45;font-size:16px;margin-top:14px}
+
+/* ============ 卡片 ============ */
+.grid{display:grid;gap:26px}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.g2{grid-template-columns:repeat(2,1fr)}
+.card{
+  background:var(--white);border-radius:20px;padding:30px 26px;
+  box-shadow:var(--shadow-sm);border:1px solid #f5e7c8;transition:.3s;
+  position:relative;overflow:hidden;
+}
+.card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.card .icon{
+  width:58px;height:58px;border-radius:16px;display:flex;align-items:center;justify-content:center;
+  font-size:28px;margin-bottom:18px;
+}
+.card h3{font-size:20px;color:var(--brown-dk);margin-bottom:10px}
+.card p,.card li{color:#6b5236;font-size:14.5px}
+.card ul{list-style:none}
+.card ul li{padding:5px 0;padding-left:18px;position:relative}
+.card ul li::before{content:"●";position:absolute;left:0;color:var(--gold);font-size:9px;top:10px}
+.icon.gold{background:linear-gradient(135deg,var(--gold),var(--orange));color:#fff}
+.icon.deep{background:linear-gradient(135deg,var(--gold-deep),var(--brown));color:#fff}
+.icon.amber{background:linear-gradient(135deg,var(--amber),var(--gold));color:var(--brown-dk)}
+.icon.green{background:linear-gradient(135deg,#9ccc3f,#6da51e);color:#fff}
+
+/* ============ 步骤流程 ============ */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;align-items:stretch}
+.step{position:relative;padding:0 6px}
+.step .num{
+  width:70px;height:70px;margin:0 auto 18px;border-radius:20px;color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:800;
+  box-shadow:var(--shadow-sm);
+}
+.step h3{text-align:center;font-size:19px;color:var(--brown-dk);margin-bottom:10px}
+.step p{text-align:center;color:#6b5236;font-size:13.5px;padding:0 4px}
+.step .arrow{position:absolute;top:26px;right:-14px;font-size:22px;color:var(--gold);z-index:2}
+
+/* ============ 成分条 ============ */
+.bar-row{display:flex;align-items:center;gap:16px;margin-bottom:26px}
+.bar-row .label{width:300px;font-weight:700;color:var(--brown-dk);font-size:15px;text-align:right}
+.bar-row .pct{width:52px;font-weight:800;font-size:16px}
+.bar-row .track{flex:1;background:#f3e6c8;height:26px;border-radius:99px;overflow:hidden}
+.bar-row .fill{height:100%;border-radius:99px;transition:width 1.2s cubic-bezier(.22,1,.36,1)}
+
+/* ============ 提示条 ============ */
+.notice{
+  background:linear-gradient(135deg,var(--gold),var(--orange));color:#fff;
+  border-radius:18px;padding:22px 30px;text-align:center;font-size:16px;font-weight:600;
+  box-shadow:0 10px 26px rgba(232,122,30,.3);margin-top:14px;
+}
+
+/* ============ 页脚 ============ */
+.footer{
+  background:var(--brown-dk);color:#d8c6a4;padding:70px 5vw 34px;text-align:center;
+}
+.footer .bee{font-size:52px;animation:float 4s ease-in-out infinite}
+.footer h2{color:var(--gold);font-size:32px;margin:14px 0 8px}
+.footer p{color:#c9b48f;font-size:15px}
+.footer .line{width:52px;height:3px;background:var(--gold);margin:22px auto;border-radius:3px}
+.footer .small{font-size:12.5px;color:#9a8668;margin-top:26px}
+
+/* ============ 显现动画 ============ */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .7s ease,transform .7s ease}
+.reveal.show{opacity:1;transform:translateY(0)}
+
+/* ============ 响应式 ============ */
+@media(max-width:920px){
+  .g4,.g3{grid-template-columns:repeat(2,1fr)}
+  .steps{grid-template-columns:repeat(2,1fr);gap:30px}
+  .step .arrow{display:none}
+  .hero h1{font-size:44px}
+}
+@media(max-width:600px){
+  .g4,.g3,.g2{grid-template-columns:1fr}
+  .nav .links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--brown-dk);
+    flex-direction:column;padding:14px}
+  .nav .links.open{display:flex}
+  .nav .menu-btn{display:block}
+  .bar-row .label{width:120px;font-size:13px;text-align:left}
+  .hero h1{font-size:34px}
+  .sec-head h2{font-size:28px}
+}
+</style>
+</head>
+<body>
+
+<!-- 导航 -->
+<nav class="nav">
+  <div class="logo"><span class="bee">🐝</span>蜜蜂的世界</div>
+  <div class="links" id="links">
+    <a href="#home" class="active">首页</a>
+    <a href="#about">认识蜜蜂</a>
+    <a href="#growth">生长习性</a>
+    <a href="#honey">蜂蜜制作</a>
+    <a href="#knowledge">蜂蜜知识</a>
+  </div>
+  <button class="menu-btn" id="menuBtn">☰</button>
+</nav>
+
+<!-- Hero -->
+<header class="hero" id="home">
+  <svg class="hex h1" viewBox="0 0 100 100"><polygon points="50,0 93,25 93,75 50,100 7,75 7,25"/></svg>
+  <svg class="hex h2" viewBox="0 0 100 100"><polygon points="50,0 93,25 93,75 50,100 7,75 7,25"/></svg>
+  <svg class="hex h3" viewBox="0 0 100 100"><polygon points="50,0 93,25 93,75 50,100 7,75 7,25"/></svg>
+  <svg class="hex h4" viewBox="0 0 100 100"><polygon points="50,0 93,25 93,75 50,100 7,75 7,25"/></svg>
+  <div class="hero-inner">
+    <span class="bee-big">🐝</span>
+    <h1>蜜蜂的世界<span>生长习性 · 蜂蜜制作知识</span></h1>
+    <p class="sub">Bee Growth Habits &amp; How Honey Is Made</p>
+    <span class="tag">— 探秘勤劳小生命的奇妙世界 —</span>
+    <div class="cta">
+      <a href="#about" class="btn btn-gold">开始探索</a>
+      <a href="#honey" class="btn btn-ghost">蜂蜜是怎么来的？</a>
+    </div>
+  </div>
+  <div class="scroll-hint">▼ 向下滚动</div>
+</header>
+
+<!-- 认识蜜蜂 -->
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">🐝 ABOUT BEES</div>
+      <h2>认识蜜蜂</h2>
+      <div class="bar"></div>
+      <p class="sub">蜜蜂是地球上最重要的传粉昆虫之一，一个蜂群就是一个高度协作的“超级个体”</p>
+    </div>
+    <div class="grid g2 reveal">
+      <div class="card">
+        <div class="icon gold">🐝</div>
+        <h3>蜜蜂是谁？</h3>
+        <p>蜜蜂属于<b>昆虫纲 · 膜翅目 · 蜜蜂科</b>。全球约有 2 万种蜜蜂，我们常说的“蜜蜂”多指西方蜜蜂。</p>
+        <p style="margin-top:12px">蜜蜂采蜜的同时为植物传粉，维系着生态系统的繁盛。没有蜜蜂，地球上约 <b>1/3 的食物</b>将失去授粉来源。</p>
+      </div>
+      <div class="card">
+        <div class="icon deep">🏠</div>
+        <h3>蜂群大家庭</h3>
+        <ul>
+          <li><b>蜂王</b> —— 蜂群唯一能产卵的雌蜂，统领整个家族</li>
+          <li><b>工蜂</b> —— 数量最多，负责采蜜、酿蜜、筑巢、育幼、守卫</li>
+          <li><b>雄蜂</b> —— 只负责与蜂王交配，繁衍后代</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 生长习性 -->
+<section class="section alt" id="growth">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">🌱 GROWTH HABITS</div>
+      <h2>蜜蜂的生长习性</h2>
+      <div class="bar"></div>
+      <p class="sub">蜜蜂是完全变态发育的昆虫，经历卵、幼虫、蛹、成虫四个阶段</p>
+    </div>
+
+    <!-- 生命历程 -->
+    <div class="steps reveal">
+      <div class="step">
+        <div class="num" style="background:linear-gradient(135deg,var(--gold),var(--orange))">卵</div>
+        <h3>卵期 · 3 天</h3>
+        <p>蜂王在巢房中产下乳白色的小卵</p>
+        <span class="arrow">➤</span>
+      </div>
+      <div class="step">
+        <div class="num" style="background:linear-gradient(135deg,var(--amber),var(--gold))">幼</div>
+        <h3>幼虫期 · 6 天</h3>
+        <p>孵化后由工蜂喂食蜂王浆与蜂蜜</p>
+        <span class="arrow">➤</span>
+      </div>
+      <div class="step">
+        <div class="num" style="background:linear-gradient(135deg,var(--gold-deep),var(--brown))">蛹</div>
+        <h3>蛹期 · 12 天</h3>
+        <p>幼虫吐丝作茧，化蛹完成蜕变</p>
+        <span class="arrow">➤</span>
+      </div>
+      <div class="step">
+        <div class="num" style="background:linear-gradient(135deg,var(--orange),var(--brown))">蜂</div>
+        <h3>成虫 · 羽化</h3>
+        <p>破茧而出，开始承担蜂群中的工作</p>
+      </div>
+    </div>
+    <p class="reveal" style="text-align:center;color:var(--gold-deep);font-size:13.5px;margin-top:26px">
+      （以上为工蜂发育时间；蜂王约 16 天、雄蜂约 24 天）
+    </p>
+
+    <!-- 社会分工 -->
+    <div class="grid g3 reveal" style="margin-top:70px">
+      <div class="card">
+        <div class="icon gold">👑</div>
+        <h3>蜂王 · 蜂群之母</h3>
+        <ul>
+          <li>唯一能产受精卵的雌蜂</li>
+          <li>每天可产 1500~2000 粒卵</li>
+          <li>分泌“蜂王信息素”统领蜂群</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="icon deep">💪</div>
+        <h3>工蜂 · 勤劳劳动者</h3>
+        <ul>
+          <li>外出采集花蜜与花粉</li>
+          <li>酿造蜂蜜、分泌蜂蜡筑巢</li>
+          <li>哺育幼虫、守卫蜂巢</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="icon amber">🛡️</div>
+        <h3>雄蜂 · 繁衍使者</h3>
+        <ul>
+          <li>体型粗壮、无螫针</li>
+          <li>唯一任务是与蜂王交配</li>
+          <li>交配后不久便会死去</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 舞蹈语言 -->
+    <div class="grid g2 reveal" style="margin-top:34px">
+      <div class="card">
+        <div class="icon gold">💃</div>
+        <h3>圆舞（Round Dance）</h3>
+        <p>蜜蜂绕着圆圈来回转，表示食物在 <b>50 米以内</b>的近处。</p>
+        <div style="text-align:center;font-size:40px;color:var(--gold);margin-top:10px">⟳</div>
+      </div>
+      <div class="card">
+        <div class="icon deep">🕺</div>
+        <h3>摇摆舞（Waggle Dance）</h3>
+        <p>以“8”字舞指示远处食物方向，<b>摆动时间的长短代表距离远近</b>。</p>
+        <p style="margin-top:10px;color:var(--gold-deep)">∞ 蜜蜂还能利用太阳、地球磁场与偏振光导航，飞行数公里也能准确回家。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 蜂蜜制作 -->
+<section class="section" id="honey">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">🍯 HOW HONEY IS MADE</div>
+      <h2>蜂蜜是怎样制作的</h2>
+      <div class="bar"></div>
+      <p class="sub">从一朵花，到一滴蜜 —— 这是蜜蜂最了不起的工艺</p>
+    </div>
+
+    <!-- 采蜜之旅 -->
+    <div class="steps reveal">
+      <div class="step">
+        <div class="num" style="background:linear-gradient(135deg,var(--gold),var(--orange))">1</div>
+        <h3>寻找蜜源</h3>
+        <p>侦察蜂外出寻找盛开的花朵</p>
+        <span class="arrow">➤</span>
+      </div>
+      <div class="step">
+        <div class="num" style="background:linear-gradient(135deg,var(--amber),var(--gold))">2</div>
+        <h3>吸取花蜜</h3>
+        <p>用长喙吸取花蜜，存入“蜜囊”</p>
+        <span class="arrow">➤</span>
+      </div>
+      <div class="step">
+        <div class="num" style="background:linear-gradient(135deg,var(--gold-deep),var(--brown))">3</div>
+        <h3>满载回巢</h3>
+        <p>一次可携带约 40 毫克花蜜</p>
+        <span class="arrow">➤</span>
+      </div>
+      <div class="step">
+        <div class="num" style="background:linear-gradient(135deg,var(--orange),var(--brown))">4</div>
+        <h3>交接内勤蜂</h3>
+        <p>回巢后把花蜜吐给内勤工蜂</p>
+      </div>
+    </div>
+    <p class="reveal" style="text-align:center;color:var(--gold-deep);font-size:14px;margin-top:26px">
+      一只工蜂一生采集的蜂蜜约为 1/12 茶匙，但整个蜂群一年可酿造数十千克蜂蜜。
+    </p>
+
+    <!-- 酿造五步 -->
+    <div class="grid g4 reveal" style="margin-top:70px">
+      <div class="card">
+        <div class="icon gold">🔄</div>
+        <h3>① 反复吞吐</h3>
+        <p>内勤蜂反复吞吐花蜜，加入转化酶，把蔗糖分解成葡萄糖与果糖</p>
+      </div>
+      <div class="card">
+        <div class="icon amber">🌬️</div>
+        <h3>② 摊开蒸发</h3>
+        <p>将蜜滴摊在巢房内，扇动翅膀加速水分蒸发</p>
+      </div>
+      <div class="card">
+        <div class="icon deep">💧</div>
+        <h3>③ 降低水分</h3>
+        <p>水分从约 80% 降到 20% 以下，变得浓稠</p>
+      </div>
+      <div class="card">
+        <div class="icon green">🔒</div>
+        <h3>④ 封盖成熟</h3>
+        <p>成熟后用蜂蜡封住巢房，长期保存不会变质</p>
+      </div>
+    </div>
+    <div class="notice reveal">关键：转化酶的作用 + 水分蒸发 = 天然防腐、可长期保存的蜂蜜</div>
+
+    <!-- 成分 -->
+    <div class="sec-head reveal" style="margin-top:80px">
+      <div class="eyebrow">🧪 COMPOSITION</div>
+      <h2>蜂蜜的成分</h2>
+      <div class="bar"></div>
+      <p class="sub">一瓶蜂蜜里有什么？</p>
+    </div>
+    <div class="reveal" style="max-width:760px;margin:0 auto">
+      <div class="bar-row">
+        <div class="label">糖类（葡萄糖 + 果糖）</div>
+        <div class="pct" style="color:var(--gold-deep)">76%</div>
+        <div class="track"><div class="fill" data-w="76" style="background:linear-gradient(90deg,var(--gold),var(--orange))"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="label">水分</div>
+        <div class="pct" style="color:var(--gold-deep)">18%</div>
+        <div class="track"><div class="fill" data-w="18" style="background:var(--amber)"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="label">其他（酶、氨基酸、矿物质、维生素）</div>
+        <div class="pct" style="color:var(--gold-deep)">6%</div>
+        <div class="track"><div class="fill" data-w="6" style="background:var(--gold-deep)"></div></div>
+      </div>
+    </div>
+    <p class="reveal" style="text-align:center;color:#8a6a45;font-size:14px;margin-top:18px;max-width:720px;margin-left:auto;margin-right:auto">
+      小知识：蜂蜜中的糖类以单糖为主，可被人体直接吸收；其中的活性酶与微量元素，是蜂蜜营养价值的来源。
+    </p>
+
+    <!-- 分类 -->
+    <div class="sec-head reveal" style="margin-top:80px">
+      <div class="eyebrow">🌸 VARIETIES</div>
+      <h2>蜂蜜的分类</h2>
+      <div class="bar"></div>
+      <p class="sub">按蜜源植物划分，风味各不相同</p>
+    </div>
+    <div class="grid g3 reveal">
+      <div class="card"><div class="icon amber">🌼</div><h3>槐花蜜</h3><p>清香淡雅 · 不易结晶</p></div>
+      <div class="card"><div class="icon gold">🌴</div><h3>枣花蜜</h3><p>甜香浓郁 · 铁含量高</p></div>
+      <div class="card"><div class="icon deep">🌳</div><h3>椴树蜜</h3><p>清香 · 易结晶呈白色</p></div>
+      <div class="card"><div class="icon gold">🍒</div><h3>荔枝蜜</h3><p>果香 · 南方特色蜜</p></div>
+      <div class="card"><div class="icon amber">🌾</div><h3>荆条蜜</h3><p>味甜 · 产量大</p></div>
+      <div class="card"><div class="icon deep">🌺</div><h3>百花蜜</h3><p>混合蜜源 · 营养丰富</p></div>
+    </div>
+    <p class="reveal" style="text-align:center;color:#8a6a45;font-size:13.5px;margin-top:24px">
+      此外还可按“成熟度”分为成熟蜜与未成熟蜜（水蜜），按生产方式分为分离蜜与巢蜜。
+    </p>
+  </div>
+</section>
+
+<!-- 蜂蜜知识 -->
+<section class="section alt" id="knowledge">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">💡 KNOWLEDGE</div>
+      <h2>蜂蜜的价值与储存</h2>
+      <div class="bar"></div>
+      <p class="sub">如何喝对、存好一瓶蜂蜜</p>
+    </div>
+    <div class="grid g2 reveal">
+      <div class="card">
+        <div class="icon gold">💛</div>
+        <h3>营养与保健价值</h3>
+        <ul>
+          <li>快速补充能量，缓解疲劳</li>
+          <li>润燥、润喉，温水冲服更佳</li>
+          <li>含多种酶与微量元素，增强体质</li>
+          <li>天然抑菌，民间用于外敷小伤口</li>
+        </ul>
+        <p style="margin-top:14px;color:var(--orange);font-weight:600">⚠️ 注意：1 岁以下婴儿不宜食用。</p>
+      </div>
+      <div class="card">
+        <div class="icon deep">📦</div>
+        <h3>正确的储存方法</h3>
+        <ul>
+          <li>密封保存，防止吸潮发酸</li>
+          <li>置于阴凉、干燥、避光处</li>
+          <li>无需冷藏，常温即可长期保存</li>
+          <li>用干燥无水的勺取用，避免污染</li>
+        </ul>
+        <p style="margin-top:14px;color:var(--gold-deep);font-weight:600">✨ 成熟蜂蜜几乎不会变质，可保存多年。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 页脚 -->
+<footer class="footer">
+  <div class="bee">🐝</div>
+  <h2>感谢观看</h2>
+  <p>愿每一滴蜂蜜，都让你想起蜜蜂的辛勤</p>
+  <div class="line"></div>
+  <p style="font-size:13px;letter-spacing:2px">The World of Bees · Growth &amp; Honey</p>
+  <p class="small">© 蜜蜂的世界 · 生长习性与蜂蜜制作知识</p>
+</footer>
+
+<script>
+// 移动端菜单
+const menuBtn = document.getElementById('menuBtn');
+const links = document.getElementById('links');
+menuBtn.addEventListener('click', () => links.classList.toggle('open'));
+links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+// 导航高亮
+const sections = document.querySelectorAll('section[id], header[id]');
+const navLinks = document.querySelectorAll('.nav .links a');
+window.addEventListener('scroll', () => {
+  let cur = 'home';
+  sections.forEach(sec => {
+    if (window.scrollY >= sec.offsetTop - 120) cur = sec.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + cur);
+  });
+});
+
+// 滚动显现动画
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('show');
+      // 触发成分条动画
+      e.target.querySelectorAll('.fill').forEach(f => f.style.width = f.dataset.w + '%');
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
